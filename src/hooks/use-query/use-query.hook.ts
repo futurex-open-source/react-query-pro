@@ -1,24 +1,16 @@
-import { AxiosRequestConfig } from 'axios'
 import { useReducer } from 'react'
+import { QueryOptions, RequestReducerActionTypes } from '../../types'
 import { handleRequest } from '../../utils/api.utils'
-import useQueryReducer, {
-  INITIAL_STATE,
-  RequestReducerActionTypes
-} from './use-query.reducer'
-
-export type UseQueryProps = {
-  handleSuccess?: (data: any) => void
-  handleError?: (error: any) => void
-} & AxiosRequestConfig
+import useQueryReducer, { INITIAL_STATE } from './use-query.reducer'
 
 const useQuery = ({
   handleError,
   handleSuccess,
   ...otherOptions
-}: UseQueryProps) => {
+}: QueryOptions) => {
   const [state, dispatch] = useReducer(useQueryReducer, INITIAL_STATE)
 
-  const makeQuery = async (body?: any) => {
+  const makeQuery = async (body?: object) => {
     dispatch({ type: RequestReducerActionTypes.MAKE_REQUEST_START })
 
     try {
@@ -28,8 +20,6 @@ const useQuery = ({
       })
 
       const { data } = response
-
-      console.log({ response })
 
       dispatch({
         type: RequestReducerActionTypes.MAKE_REQUEST_SUCCESS,
@@ -55,6 +45,7 @@ const useQuery = ({
 
   return {
     ...state,
+    isLoading: state.status === 'LOADING',
     makeQuery
   }
 }
