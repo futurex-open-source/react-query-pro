@@ -13,16 +13,16 @@ const useGetQuery = (options: UseGetQueryOptions): UseGetQueryValues => {
     ...otherOptions
   } = options
 
-  const { makeQuery, ...otherValues } = useQuery({
+  const { createQuery, ...otherValues } = useQuery({
     method,
     ...otherOptions
   })
 
   useEffect(() => {
     if (shouldGet && method === 'GET') {
-      console.log({ shouldGet, otherOptions, method })
+      ;({ shouldGet, otherOptions, method })
 
-      makeQuery()
+      createQuery()
     }
   }, [shouldRetry])
 
@@ -33,7 +33,7 @@ const useGetQuery = (options: UseGetQueryOptions): UseGetQueryValues => {
   return {
     ...otherValues,
     retry,
-    makeQuery
+    createQuery
   }
 }
 

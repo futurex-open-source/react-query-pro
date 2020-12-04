@@ -1,10 +1,10 @@
 import React from 'react'
 
 import 'react-query/dist/index.css'
-import { QueryExample } from './component/query.compnents'
+import { MakeRequestExample } from './component/query.compnents'
 
 const App = () => {
-  return <QueryExample />
+  return <MakeRequestExample />
 }
 
 export default App

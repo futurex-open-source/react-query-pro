@@ -1,6 +1,6 @@
 import Axios, { AxiosPromise, AxiosRequestConfig } from 'axios'
 
-export const handleRequest = (
+export const makeRequest = (
   requestOptions: AxiosRequestConfig
 ): AxiosPromise => {
   const { method, data, url } = requestOptions
@@ -16,8 +16,6 @@ export const handleRequest = (
 
     return response
   } catch (error) {
-    console.log({ error })
-
     return error
   }
 }

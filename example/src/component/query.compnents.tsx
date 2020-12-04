@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { useQuery, useGetQuery, Query } from 'react-query'
+import { useQuery, useGetQuery, Query, makeRequest } from 'react-query'
 
 const body = {
   email: 'ucee@gmail.com',
@@ -8,14 +8,14 @@ const body = {
 }
 
 export const UseQueryExample = () => {
-  const { makeQuery, isLoading, error, data } = useQuery({
+  const { createQuery, isLoading, error, data } = useQuery({
     method: 'POST',
     url: 'https://socialbusinessconnect.com/api/login'
   })
 
   const handleSubmit = async () => {
     try {
-      const data = await makeQuery(body)
+      const data = await createQuery(body)
 
       console.log({ data })
     } catch (error) {
@@ -77,4 +77,25 @@ export const QueryExample = () => {
       }}
     </Query>
   )
+}
+
+export const MakeRequestExample = () => {
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const response = await makeRequest({
+          method: 'GET',
+          url: 'https://fakestoreapi.com/products'
+        })
+
+        console.log({ response })
+      } catch (error) {
+        console.log({ error })
+      }
+    }
+
+    getProducts()
+  }, [])
+
+  return <h1>EXAMPLE COMPONENT</h1>
 }

@@ -10,7 +10,7 @@ const Query = ({
 }: QueryProps) => {
   const shouldGet = method === 'GET' || isGet
 
-  // console.log({ shouldGet, method })
+  // ({ shouldGet, method })
 
   const values = useGetQuery({ ...otherOptions, shouldGet, method })
 

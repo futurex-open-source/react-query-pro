@@ -30,7 +30,7 @@ export type RequestActions = {
 
 export type UseQueryValues = UseQueryState & {
   isLoading: boolean
-  makeQuery: (body?: object) => void
+  createQuery: (body?: object) => void
 }
 
 export type UseGetQueryValues = UseQueryValues & {
