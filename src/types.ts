@@ -23,3 +23,8 @@ export type RequestActions = {
   type: RequestReducerActionTypes
   payload?: any
 }
+
+export type UseQueryReturn = UseQueryState & {
+  isLoading: boolean
+  makeQuery: (body?: object) => void
+}
