@@ -5,6 +5,10 @@ export type QueryOptions = AxiosRequestConfig & {
   handleError?: (error: any) => void
 }
 
+export type UseGetQueryOptions = QueryOptions & {
+  shouldGet?: boolean
+}
+
 export enum RequestReducerActionTypes {
   MAKE_REQUEST_START = 'MAKE_REQUEST_START',
   MAKE_REQUEST_SUCCESS = 'MAKE_REQUEST_SUCCESS',
@@ -24,7 +28,7 @@ export type RequestActions = {
   payload?: any
 }
 
-export type UseQueryReturn = UseQueryState & {
+export type UseQueryValues = UseQueryState & {
   isLoading: boolean
   makeQuery: (body?: object) => void
 }

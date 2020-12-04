@@ -2,17 +2,15 @@ import { useReducer } from 'react'
 import {
   QueryOptions,
   RequestReducerActionTypes,
-  UseQueryReturn
+  UseQueryValues
 } from '../../types'
 import { handleRequest } from '../../utils/api.utils'
 import useQueryReducer, { INITIAL_STATE } from './use-query.reducer'
 
-const useQuery = ({
-  handleError,
-  handleSuccess,
-  ...otherOptions
-}: QueryOptions): UseQueryReturn => {
+const useQuery = (options: QueryOptions): UseQueryValues => {
   const [state, dispatch] = useReducer(useQueryReducer, INITIAL_STATE)
+
+  const { handleError, handleSuccess, ...otherOptions } = options
 
   const makeQuery = async (body?: object) => {
     dispatch({ type: RequestReducerActionTypes.MAKE_REQUEST_START })

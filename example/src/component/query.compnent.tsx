@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useQuery } from 'react-query'
+import { useQuery, useGetQuery } from 'react-query'
 
 export const UseQuery = () => {
   const { makeQuery, isLoading, error, data } = useQuery({
@@ -15,9 +15,9 @@ export const UseQuery = () => {
     }
 
     try {
-      await makeQuery(body)
+      const data = await makeQuery(body)
 
-      // console.log({ data })
+      console.log({ data })
     } catch (error) {
       console.log({ error })
     }
@@ -34,4 +34,24 @@ export const UseQuery = () => {
       {data && <pre>{JSON.stringify(data.data)}</pre>}
     </>
   )
+}
+
+export const UseGetQuery = () => {
+  const { isLoading, data, error, retry } = useGetQuery({
+    url: 'https://fakestoreapi.com/products',
+    method: 'GET'
+  })
+
+  if (isLoading) return <p>loading...</p>
+
+  if (error)
+    return (
+      <>
+        <p>An unexpected error occurred {error.message}</p>
+
+        <button onClick={retry}>retry</button>
+      </>
+    )
+
+  return <pre>{JSON.stringify(data)}</pre>
 }
