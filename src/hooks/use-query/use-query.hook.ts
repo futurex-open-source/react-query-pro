@@ -4,7 +4,7 @@ import {
   RequestReducerActionTypes,
   UseQueryValues
 } from '../../types'
-import { handleRequest } from '../../utils/api.utils'
+import { makeRequest } from '../../utils/api.utils'
 import useQueryReducer, { INITIAL_STATE } from './use-query.reducer'
 
 const useQuery = (options: QueryOptions): UseQueryValues => {
@@ -12,18 +12,16 @@ const useQuery = (options: QueryOptions): UseQueryValues => {
 
   const { handleError, handleSuccess, ...otherOptions } = options
 
-  const makeQuery = async (body?: object) => {
+  const createQuery = async (body?: object) => {
     dispatch({ type: RequestReducerActionTypes.MAKE_REQUEST_START })
 
     try {
-      const response = await handleRequest({
+      const response = await makeRequest({
         ...(body && { data: body }),
         ...otherOptions
       })
 
       const { data } = response
-
-      console.log({ response, options })
 
       dispatch({
         type: RequestReducerActionTypes.MAKE_REQUEST_SUCCESS,
@@ -50,7 +48,7 @@ const useQuery = (options: QueryOptions): UseQueryValues => {
   return {
     ...state,
     isLoading: state.status === 'LOADING',
-    makeQuery
+    createQuery
   }
 }
 
