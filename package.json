@@ -62,5 +62,13 @@
   ],
   "dependencies": {
     "axios": "^0.21.0"
-  }
+  },
+  "keywords": [
+    "react",
+    "react-query-pro",
+    "request",
+    "hooks",
+    "react hooks",
+    "render prop"
+  ]
 }
