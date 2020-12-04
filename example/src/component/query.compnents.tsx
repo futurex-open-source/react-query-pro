@@ -1,19 +1,19 @@
 import React from 'react'
 
-import { useQuery, useGetQuery } from 'react-query'
+import { useQuery, useGetQuery, Query } from 'react-query'
 
-export const UseQuery = () => {
+const body = {
+  email: 'ucee@gmail.com',
+  password: '111111'
+}
+
+export const UseQueryExample = () => {
   const { makeQuery, isLoading, error, data } = useQuery({
     method: 'POST',
     url: 'https://socialbusinessconnect.com/api/login'
   })
 
   const handleSubmit = async () => {
-    const body = {
-      email: 'ucee@gmail.com',
-      password: '111111'
-    }
-
     try {
       const data = await makeQuery(body)
 
@@ -36,7 +36,7 @@ export const UseQuery = () => {
   )
 }
 
-export const UseGetQuery = () => {
+export const UseGetQueryExample = () => {
   const { isLoading, data, error, retry } = useGetQuery({
     url: 'https://fakestoreapi.com/products',
     method: 'GET'
@@ -54,4 +54,27 @@ export const UseGetQuery = () => {
     )
 
   return <pre>{JSON.stringify(data)}</pre>
+}
+
+export const QueryExample = () => {
+  return (
+    <Query url='https://fakestoreapi.com/products' method='GET' data={body}>
+      {({ isLoading, error, data, retry }) => {
+        console.log({ data })
+
+        if (isLoading) return <p>loading...</p>
+
+        if (error)
+          return (
+            <>
+              <p>An unexpected error occurred {error.message}</p>
+
+              <button onClick={retry}>retry</button>
+            </>
+          )
+
+        return <pre>{JSON.stringify(data)}</pre>
+      }}
+    </Query>
+  )
 }

@@ -1,25 +1,27 @@
 import { useEffect, useState } from 'react'
-import { UseGetQueryOptions } from '../../types'
+import { UseGetQueryOptions, UseGetQueryValues } from '../../types'
 import useQuery from '../use-query/use-query.hook'
 
-const useGetQuery = (options: UseGetQueryOptions) => {
+const useGetQuery = (options: UseGetQueryOptions): UseGetQueryValues => {
   const [shouldRetry, setShouldRetry] = useState(false)
 
   const {
     handleError,
     handleSuccess,
-    method,
-    shouldGet = true,
+    method = 'GET',
+    shouldGet,
     ...otherOptions
   } = options
 
   const { makeQuery, ...otherValues } = useQuery({
-    method: method === 'GET' ? method : 'GET',
+    method,
     ...otherOptions
   })
 
   useEffect(() => {
-    if (shouldGet) {
+    if (shouldGet && method === 'GET') {
+      console.log({ shouldGet, otherOptions, method })
+
       makeQuery()
     }
   }, [shouldRetry])
@@ -30,7 +32,8 @@ const useGetQuery = (options: UseGetQueryOptions) => {
 
   return {
     ...otherValues,
-    retry
+    retry,
+    makeQuery
   }
 }
 

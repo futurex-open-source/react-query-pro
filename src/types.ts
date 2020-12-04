@@ -32,3 +32,11 @@ export type UseQueryValues = UseQueryState & {
   isLoading: boolean
   makeQuery: (body?: object) => void
 }
+
+export type UseGetQueryValues = UseQueryValues & {
+  retry: () => void
+}
+
+export type QueryProps = UseGetQueryOptions & {
+  children: (QueryValues: UseGetQueryValues) => JSX.Element
+}

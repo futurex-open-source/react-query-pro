@@ -17,11 +17,13 @@ const useQuery = (options: QueryOptions): UseQueryValues => {
 
     try {
       const response = await handleRequest({
-        data: body,
+        ...(body && { data: body }),
         ...otherOptions
       })
 
       const { data } = response
+
+      console.log({ response, options })
 
       dispatch({
         type: RequestReducerActionTypes.MAKE_REQUEST_SUCCESS,
