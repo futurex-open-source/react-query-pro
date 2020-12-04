@@ -1,10 +1,10 @@
 {
-  "name": "react-query-prop",
+  "name": "react-query-pro",
   "version": "1.0.0",
-  "description": "A react package for handling network requests",
+  "description": "Make asynchronous requests and manage data with ease using the patterns you are already familiar with",
   "author": "UcheSylvester",
   "license": "MIT",
-  "repository": "UcheSylvester/react-query",
+  "repository": "FutureX-Open-Source/react-query-pro",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.tsx",

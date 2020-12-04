@@ -94,7 +94,7 @@ export default App
 
 #### Query
 
-The `Query` component uses the render prop pattern for making asynchronous request. It is best used when making multiple request in a single component.
+The `Query` component uses the render prop pattern for managing asynchronous request. It is best used when making multiple request in a single component.
 
 ```tsx
 import React from 'react'
@@ -145,7 +145,7 @@ export const App
 
 #### makeRequest
 
-`makeRequest` is a special utility function for making request when you don't want to use any of the `hooks` or the `Query` component
+Don't want to use `hooks` or the `Query` component? `makeRequest` is here for you 😃
 
 ```tsx
 const MakeRequestExample = () => {
