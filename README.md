@@ -28,7 +28,7 @@ React query pro exposes two hooks `useGetQuery` and `useQuery`, a `Query` compon
 import React from 'react'
 import { useGetQuery } from 'react-query-pro'
 
-export const App = () => {
+export const UseGetQueryExample = () => {
   const { isLoading, data, error, retry } = useGetQuery({
     url: 'http://localhost:3000/posts/1',
     method: 'GET'
@@ -53,7 +53,7 @@ export const App = () => {
   )
 }
 
-export default App
+export default UseGetQueryExample
 ```
 
 #### useQuery
@@ -64,7 +64,7 @@ The `useQuery` is a special hook for performing any form of `CRUD` operation. It
 import React from 'react'
 import { useQuery } from 'react-query-pro'
 
-const App = () => {
+const UseQueryExample = () => {
   const { createQuery, isLoading, error, data } = useQuery({
     method: 'POST',
     url: 'http://localhost:3000/users/login'
@@ -89,7 +89,7 @@ const App = () => {
   return <button onClick={handleSubmit}>Send</button>
 }
 
-export default App
+export default UseQueryExample
 ```
 
 #### Query
@@ -100,7 +100,7 @@ The `Query` component uses the render prop pattern for managing asynchronous req
 import React from 'react'
 import { Query } from 'react-query-pro'
 
-const App = () => {
+const QueryExample = () => {
   return (
     // For getting stories
     <Query url='http://localhost:3000/stories' method='GET'>
@@ -140,7 +140,7 @@ const App = () => {
   )
 }
 
-export const App
+export const QueryExample
 ```
 
 #### makeRequest
@@ -148,6 +148,10 @@ export const App
 Don't want to use `hooks` or the `Query` component? `makeRequest` is here for you 😃
 
 ```tsx
+import React from 'react'
+const MakeRequestExample = () => {
+import { makeRequest } from 'react-query-pro'
+
 const MakeRequestExample = () => {
   const handleSubmit = async () => {
     try {
