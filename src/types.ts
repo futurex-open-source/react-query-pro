@@ -28,6 +28,8 @@ export type RequestActions = {
   payload?: any
 }
 
+export type RequestOptions = AxiosRequestConfig
+
 export type UseQueryValues = UseQueryState & {
   isLoading: boolean
   createQuery: (body?: object) => void

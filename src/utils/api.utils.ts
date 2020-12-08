@@ -1,8 +1,7 @@
-import Axios, { AxiosPromise, AxiosRequestConfig } from 'axios'
+import Axios, { AxiosPromise } from 'axios'
+import { RequestOptions } from '../types'
 
-export const makeRequest = (
-  requestOptions: AxiosRequestConfig
-): AxiosPromise => {
+export const makeRequest = (requestOptions: RequestOptions): AxiosPromise => {
   const { method, data, url } = requestOptions
   const axiosConfig = {
     method,
