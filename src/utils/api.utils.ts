@@ -15,6 +15,6 @@ export const makeRequest = (requestOptions: RequestOptions): AxiosPromise => {
 
     return response
   } catch (error) {
-    return error
+    throw error
   }
 }
