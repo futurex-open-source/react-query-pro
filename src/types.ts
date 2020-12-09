@@ -32,7 +32,7 @@ export type RequestOptions = AxiosRequestConfig
 
 export type UseQueryValues = UseQueryState & {
   isLoading: boolean
-  createQuery: (body?: object) => void
+  createQuery: (body?: object) => Promise<any>
 }
 
 export type UseGetQueryValues = UseQueryValues & {
